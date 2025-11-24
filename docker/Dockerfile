@@ -20,7 +20,7 @@ RUN --mount=type=cache,id=pnpm-store,target=/tmp/pnpm-store \
     apk add --no-cache make gcc g++ python3 linux-headers npm jq && \
     npm install -g $(jq -r '.packageManager' package.json) && \
     pnpm config set store-dir /tmp/pnpm-store && \
-    pnpm install --frozen-lockfile --prod --no-optional && \
+    pnpm install --frozen-lockfile --no-optional && \
     # force serialport to rebuild on current platform instead of using prebuilds
     rm -rf $(find ./node_modules/.pnpm/ -wholename "*/@serialport/bindings-cpp/prebuilds" -type d) && \
     pnpm rebuild @serialport/bindings-cpp
